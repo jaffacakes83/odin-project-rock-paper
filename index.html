@@ -9,6 +9,11 @@
 <body>
     <script>
 
+let playerSelection = prompt ("Do you choose rock, paper or scissors?");
+let computerSelection = getComputerChoice();
+playerSelection = playerSelection.toLowerCase();
+computerSelection = computerSelection.toLowerCase();
+
 function getComputerChoice () {
 
     let choices = ["Rock", "Paper", "Scissors"]
@@ -20,6 +25,29 @@ function getComputerChoice () {
     return choices [randomChoice]
 
 }
+
+function playRound () {
+    
+    if (playerSelection === computerSelection) {
+    return "It's a draw!";
+    }
+
+    else if (
+            (playerSelection === "Rock" && computerSelection === "Scissors") ||
+            (playerSelection === "Paper" && computerSelection === "Rock") ||
+            (playerSelection === "Scissors" && computerSelection === "Paper")
+            ) {
+    return "Player Wins";
+            }
+
+    else {
+    return "Computer Wins";
+    } 
+}
+
+
+console.log (playerSelection, computerSelection);
+console.log(playRound());
 
 
     </script>
