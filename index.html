@@ -9,45 +9,58 @@
 <body>
     <script>
 
-let playerSelection = prompt ("Do you choose rock, paper or scissors?");
-let computerSelection = getComputerChoice();
-playerSelection = playerSelection.toLowerCase();
-computerSelection = computerSelection.toLowerCase();
+//score variables
+let playerScore = 0;
+let computerScore = 0;
 
-function getComputerChoice () {
+// function for full game nesting other game functions
+function game() {
 
-    let choices = ["Rock", "Paper", "Scissors"]
-    //array options
+    //for loop game counter nesting 
+	for (let i = 1; i <= 5; i++) {
+		let playerSelection = prompt("Do you choose rock, paper or scissors?");
+		let computerSelection = getComputerChoice();
+		playerSelection = playerSelection.toLowerCase();
 
-    let randomChoice = Math.floor(Math.random()*choices.length)
-    //generates random number. Floor rounds down and .length counts length of array
 
-    return choices [randomChoice]
+        //function to create a random choice
+		function getComputerChoice() {
+			const choices = ["rock", "paper", "scissors"];
+			let randomChoice = Math.floor(Math.random() * choices.length);
+			return choices[randomChoice];
+		}
+        //---------------------------------
 
+		//function to play one round
+		function playRound() {
+			if (playerSelection === computerSelection) {
+				return "It's a draw!";
+			} else if (
+				(playerSelection === "rock" && computerSelection === "scissors") ||
+				(playerSelection === "paper" && computerSelection === "rock") ||
+				(playerSelection === "scissors" && computerSelection === "paper")
+			) {
+				playerScore++;
+				return "Player Wins";
+			} else {
+				computerScore++;
+				return "Computer Wins";
+			}
+		}
+        //-----------------------------
+
+		console.log("Round " + i + ": " + playerSelection + " vs " + computerSelection);
+		console.log(playRound());
+		console.log("Score: Player " + playerScore + " - " + computerScore + " Computer");
+
+	}
+    //---------------------------------
+
+	console.log("Final Score: Player " + playerScore + " - " + computerScore + " Computer");
 }
 
-function playRound () {
-    
-    if (playerSelection === computerSelection) {
-    return "It's a draw!";
-    }
+game();
 
-    else if (
-            (playerSelection === "Rock" && computerSelection === "Scissors") ||
-            (playerSelection === "Paper" && computerSelection === "Rock") ||
-            (playerSelection === "Scissors" && computerSelection === "Paper")
-            ) {
-    return "Player Wins";
-            }
-
-    else {
-    return "Computer Wins";
-    } 
-}
-
-
-console.log (playerSelection, computerSelection);
-console.log(playRound());
 
 
     </script>
