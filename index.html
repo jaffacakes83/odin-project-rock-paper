@@ -2,67 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <script>
-
-//score variables
-let playerScore = 0;
-let computerScore = 0;
-
-// function for full game nesting other game functions
-function game() {
-
-    //for loop game counter nesting 
-	for (let i = 1; i <= 5; i++) {
-		let playerSelection = prompt("Do you choose rock, paper or scissors?");
-		let computerSelection = getComputerChoice();
-		playerSelection = playerSelection.toLowerCase();
-
-
-        //function to create a random choice
-		function getComputerChoice() {
-			const choices = ["rock", "paper", "scissors"];
-			let randomChoice = Math.floor(Math.random() * choices.length);
-			return choices[randomChoice];
-		}
-        //---------------------------------
-
-		//function to play one round
-		function playRound() {
-			if (playerSelection === computerSelection) {
-				return "It's a draw!";
-			} else if (
-				(playerSelection === "rock" && computerSelection === "scissors") ||
-				(playerSelection === "paper" && computerSelection === "rock") ||
-				(playerSelection === "scissors" && computerSelection === "paper")
-			) {
-				playerScore++;
-				return "Player Wins";
-			} else {
-				computerScore++;
-				return "Computer Wins";
-			}
-		}
-        //-----------------------------
-
-		console.log("Round " + i + ": " + playerSelection + " vs " + computerSelection);
-		console.log(playRound());
-		console.log("Score: Player " + playerScore + " - " + computerScore + " Computer");
-
-	}
-    //---------------------------------
-
-	console.log("Final Score: Player " + playerScore + " - " + computerScore + " Computer");
-}
-
-game();
-
-
-
-    </script>
+    <h1>Rock Paper Scissors</h1>
+    <div id="game-container">
+        <button id="rock" data-choice="rock">Rock</button>
+        <button id="paper" data-choice="paper">Paper</button>
+        <button id="scissors" data-choice="scissors">Scissors</button>
+        <div id="results"></div>
+        <div id="score">Player: 0 | Computer: 0</div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
+
